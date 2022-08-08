@@ -1,7 +1,7 @@
 const express = require("express");
 const supabase = require("./route/supabase");
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
