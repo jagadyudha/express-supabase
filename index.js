@@ -54,6 +54,12 @@ app.get("/promo", async (req, res) => {
   res.status(200).json(data);
 });
 
+// get data kategori
+app.get("/kategori", async (req, res) => {
+  const { data } = await supabase.from("kategori").select("*");
+  res.status(200).json(data);
+});
+
 // get data transaksi
 app.get("/transaksi", async (req, res) => {
   const { data } = await supabase.from("transaksi").select("*");
