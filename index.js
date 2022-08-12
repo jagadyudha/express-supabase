@@ -54,11 +54,11 @@ app.get("/promo", async (req, res) => {
   res.status(200).json(data);
 });
 
-// // get data kategori
-// app.get("/kategori", async (req, res) => {
-//   const { data } = await supabase.from("kategori").select("*");
-//   res.status(200).json(data);
-// });
+// get data kategori
+app.get("/kategori", async (req, res) => {
+  const { data } = await supabase.from("kategori").select("*");
+  res.status(200).json(data);
+});
 
 // get data transaksi
 app.get("/transaksi", async (req, res) => {
@@ -89,15 +89,15 @@ app.post("/news", async (req, res) => {
   res.status(200).json(error);
 });
 
-//get data kategori
-app.get("/kategori/:id", async (req, res) => {
-  const { data } = await supabase
-    .from("kategori")
-    .select("*")
-    .match({ id_kategori: req.params.id });
+// //get data kategori
+// app.get("/kategori/:id", async (req, res) => {
+//   const { data } = await supabase
+//     .from("kategori")
+//     .select("*")
+//     .match({ id_kategori: req.params.id });
 
-  res.status(200).json(data);
-});
+//   res.status(200).json(data);
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
