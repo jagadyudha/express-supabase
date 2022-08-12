@@ -90,11 +90,11 @@ app.post("/news", async (req, res) => {
 });
 
 //get data kategori
-app.get("/kategori/:uid/:1", async (req, res) => {
+app.get("/kategori/:id", async (req, res) => {
   const { data } = await supabase
     .from("kategori")
     .select("*")
-    .match({ id_kategori: req.params.uid });
+    .match({ id_kategori: req.params.id });
 
   res.status(200).json(data);
 });
