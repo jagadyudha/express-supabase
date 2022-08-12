@@ -90,7 +90,7 @@ app.post("/news", async (req, res) => {
 });
 
 //get data kategori
-app.get("/kategori/:uid", async (req, res) => {
+app.get("/kategori/:uid/:1", async (req, res) => {
   const { data } = await supabase
     .from("kategori")
     .select("*")
