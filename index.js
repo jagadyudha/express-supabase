@@ -54,11 +54,11 @@ app.get("/promo", async (req, res) => {
   res.status(200).json(data);
 });
 
-// get data kategori
-app.get("/kategori", async (req, res) => {
-  const { data } = await supabase.from("kategori").select("*");
-  res.status(200).json(data);
-});
+// // get data kategori
+// app.get("/kategori", async (req, res) => {
+//   const { data } = await supabase.from("kategori").select("*");
+//   res.status(200).json(data);
+// });
 
 // get data transaksi
 app.get("/transaksi", async (req, res) => {
@@ -90,11 +90,11 @@ app.post("/news", async (req, res) => {
 });
 
 //get data kategori
-app.get("/kategori/:cucimobil", async (req, res) => {
+app.get("/kategori/:uid", async (req, res) => {
   const { data } = await supabase
     .from("kategori")
     .select("*")
-    .match({ nama_kategori: req.params.cucimobil });
+    .match({ id_kategori: req.params.uid });
 
   res.status(200).json(data);
 });
