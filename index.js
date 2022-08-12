@@ -89,14 +89,15 @@ app.post("/news", async (req, res) => {
   res.status(200).json(error);
 });
 
-// app.get("/users/:kontol", async (req, res) => {
-//   const { data } = await supabase
-//     .from("User")
-//     .select("*")
-//     .match({ nama_user: req.params.kontol });
+//get data kategori
+app.get("/kategori/:1", async (req, res) => {
+  const { data } = await supabase
+    .from("kategori")
+    .select("*")
+    .match({ id_kategori: req.params.kategori });
 
-//   res.status(200).json(data);
-// });
+  res.status(200).json(data);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
