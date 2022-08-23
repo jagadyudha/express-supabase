@@ -60,11 +60,11 @@ app.get("/kategori", async (req, res) => {
   res.status(200).json(data);
 });
 
-// get data transaksi
-app.get("/transaksi", async (req, res) => {
-  const { data } = await supabase.from("transaksi").select("*");
-  res.status(200).json(data);
-});
+// // get data transaksi
+// app.get("/transaksi", async (req, res) => {
+//   const { data } = await supabase.from("transaksi").select("*");
+//   res.status(200).json(data);
+// });
 
 app.get("/layanan", async (req, res) => {
   const { data, error } = await supabase.from("layanan").select(`
