@@ -72,6 +72,9 @@ app.get("/layanan", async (req, res) => {
     kategori (
       id_kategori,
       nama_kategori
+      icon,
+      color,
+      bg_color
     )
   `);
   res.status(200).json(data);
