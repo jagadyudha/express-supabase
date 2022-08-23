@@ -80,6 +80,14 @@ app.get("/layanan", async (req, res) => {
   res.status(200).json(data);
 });
 
+app.get("/transaksi", async (req, res) => {
+  const { data, error } = await supabase.from("transaksi").select(`
+    id_transaksi, tgl_masuk, tgl_keluar, kendaraan, status, total_harga
+    user (id_user), layanan (id_layanan), booking (id_booking)
+  `);
+  res.status(200).json(data);
+});
+
 //post data news
 app.post("/news", async (req, res) => {
   const { error } = await supabase.from("news").insert({
