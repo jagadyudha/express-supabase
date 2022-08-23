@@ -71,7 +71,7 @@ app.get("/layanan", async (req, res) => {
     id_layanan, nama_layanan, deskripsi_layanan, harga, detail_layanan,
     kategori (
       id_kategori,
-      nama_kategori
+      nama_kategori,
       icon,
       color,
       bg_color
