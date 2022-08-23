@@ -82,8 +82,8 @@ app.get("/layanan", async (req, res) => {
 
 app.get("/transaksi", async (req, res) => {
   const { data, error } = await supabase.from("transaksi").select(`
-    id_transaksi, tgl_masuk, tgl_keluar, kendaraan, status, total_harga
-    user (id_user)
+    id_transaksi, tgl_masuk, tgl_keluar, kendaraan, status, total_harga,
+    user (id_user), layanan (id_layanan), booking (id_booking)
   `);
   res.status(200).json(data);
 });
