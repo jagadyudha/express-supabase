@@ -1,7 +1,7 @@
 const express = require("express");
 const supabase = require("./route/supabase");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 2022;
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -84,8 +84,7 @@ app.get("/transaksi", async (req, res) => {
   const { data, error } = await supabase.from("transaksi").select(`
     id_transaksi, tgl_masuk, tgl_keluar, kendaraan, status, total_harga,
     user:id_user (id_user), 
-    layanan:id_layanan (id_layanan, nama_layanan, deskripsi_layanan, harga), 
-    kategori:id_kategori (id_kategori, icon, color, bg_color)
+    layanan:id_layanan (id_layanan, nama_layanan, deskripsi_layanan, harga)
   `);
   res.status(200).json(data);
 });
@@ -97,6 +96,20 @@ app.post("/news", async (req, res) => {
     deskripsi: req.body.deskripsi,
     gambar: req.body.gambar,
     tanggal: req.body.tanggal,
+  });
+  console.dir(req.body);
+  res.status(200).json(error);
+});
+
+app.post("/transaksi", async (req, res) => {
+  const { error } = await supabase.from("transaksi").insert({
+    id_user: req.body.id_user,
+    id_layanan: req.body.id_layanan,
+    tgl_masuk: req.body.tgl_masuk,
+    tgl_keluar: req.body.tgl_keluar,
+    kendaraan: req.body.kendaraan,
+    status: "Proses pencucian",
+    total_harga: req.body.total_harga,
   });
   console.dir(req.body);
   res.status(200).json(error);
