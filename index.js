@@ -106,6 +106,7 @@ app.post("/transaksi", async (req, res) => {
   const { error } = await supabase.from("transaksi").insert({
     id_user: req.body.id_user,
     id_layanan: req.body.id_layanan,
+    id_kategori: req.body.id_kategori,
     tgl_masuk: req.body.tgl_masuk,
     tgl_keluar: req.body.tgl_keluar,
     kendaraan: req.body.kendaraan,
