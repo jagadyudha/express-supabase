@@ -1,10 +1,8 @@
 const express = require("express");
 const supabase = require("./route/supabase");
 const app = express();
-const jawt = require("jsonwebtoken");
 const port = process.env.PORT || 2022;
 const bodyParser = require("body-parser");
-app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
