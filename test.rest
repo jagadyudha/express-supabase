@@ -1,4 +1,0 @@
-###
-Send Request
-
-POST http://localhost:2022/user
