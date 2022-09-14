@@ -1,8 +1,10 @@
 const express = require("express");
 const supabase = require("./route/supabase");
 const app = express();
+const jawt = require("jsonwebtoken");
 const port = process.env.PORT || 2022;
 const bodyParser = require("body-parser");
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -101,6 +103,65 @@ app.post("/news", async (req, res) => {
   console.dir(req.body);
   res.status(200).json(error);
 });
+
+app.post("/signup", async (req, res) => {
+  const { user, session, error } = await supabase.auth.signUp({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  if (error) {
+    res.status(200).json(error);
+  } else {
+    res.status(200).json(user);
+  }
+});
+
+app.post("/signin", async (req, res) => {
+  const { user, session, error } = await supabase.auth.signIn({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  if (error) {
+    res.status(200).json(error);
+  } else {
+    res.status(200).json(session);
+  }
+});
+
+app.post("/refreshtoken", async (req, res) => {
+  const { user, session, error } = await supabase.auth.signIn({
+    refreshToken: req.body.refreshtoken,
+  });
+
+  if (error) {
+    res.status(200).json(error);
+  } else {
+    res.status(200).json(session);
+  }
+});
+
+// app.post("/user", (req, res) => {
+//   const user = {
+//     id_user: 1,
+//     nama_user: "Jefry Fernando",
+//     username_user: "jefryfernando",
+//     password: "1234567jf",
+//   };
+//   jawt.sign(user, "secret", (err, token) => {
+//     if (err) {
+//       console.log(err);
+//       res.sendStatus(304);
+//       return;
+//     }
+//     const Token = token;
+//     res.json({
+//       user: user,
+//       token: Token,
+//     });
+//   });
+// });
 
 app.post("/transaksi", async (req, res) => {
   const { error } = await supabase.from("transaksi").insert({
