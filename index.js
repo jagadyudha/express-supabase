@@ -141,27 +141,6 @@ app.post("/refreshtoken", async (req, res) => {
   }
 });
 
-// app.post("/user", (req, res) => {
-//   const user = {
-//     id_user: 1,
-//     nama_user: "Jefry Fernando",
-//     username_user: "jefryfernando",
-//     password: "1234567jf",
-//   };
-//   jawt.sign(user, "secret", (err, token) => {
-//     if (err) {
-//       console.log(err);
-//       res.sendStatus(304);
-//       return;
-//     }
-//     const Token = token;
-//     res.json({
-//       user: user,
-//       token: Token,
-//     });
-//   });
-// });
-
 app.post("/transaksi", async (req, res) => {
   const { error } = await supabase.from("transaksi").insert({
     id_user: req.body.id_user,
@@ -176,16 +155,6 @@ app.post("/transaksi", async (req, res) => {
   console.dir(req.body);
   res.status(200).json(error);
 });
-
-// //get data kategori
-// app.get("/kategori/:id", async (req, res) => {
-//   const { data } = await supabase
-//     .from("kategori")
-//     .select("*")
-//     .match({ id_kategori: req.params.id });
-
-//   res.status(200).json(data);
-// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
