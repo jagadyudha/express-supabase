@@ -129,6 +129,12 @@ app.post("/signin", async (req, res) => {
   }
 });
 
+// get data signin
+app.get("/signin", async (req, res) => {
+  const { data } = await supabase.auth.signIn.select("*");
+  res.status(200).json(data);
+});
+
 app.post("/refreshtoken", async (req, res) => {
   const { user, session, error } = await supabase.auth.signIn({
     refreshToken: req.body.refreshtoken,
