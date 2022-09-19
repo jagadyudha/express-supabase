@@ -131,7 +131,7 @@ app.post("/signin", async (req, res) => {
 
 // get data signin
 app.get("/signin", async (req, res) => {
-  const { data } = await supabase.auth.signIn.select("*");
+  const { data } = await supabase.auth.signIn;
   res.status(200).json(data);
 });
 
