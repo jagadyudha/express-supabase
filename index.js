@@ -104,9 +104,9 @@ app.post("/news", async (req, res) => {
 
 app.post("/signup", async (req, res) => {
   const { user, session, error } = await supabase.auth.signUp({
-    nama: req.body.nama,
     email: req.body.email,
     password: req.body.password,
+    nama: req.body.nama,
   });
 
   if (error) {
