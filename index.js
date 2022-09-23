@@ -103,11 +103,17 @@ app.post("/news", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { user, session, error } = await supabase.auth.signUp({
-    email: req.body.email,
-    password: req.body.password,
-    nama: req.body.nama,
-  });
+  const { user, session, error } = await supabase.auth.signUp(
+    {
+      email: req.body.email,
+      password: req.body.password,
+    },
+    {
+      data: {
+        name: req.body.name,
+      },
+    }
+  );
 
   if (error) {
     res.status(200).json(error);
