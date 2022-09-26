@@ -12,12 +12,6 @@ app.get("/admin", async (req, res) => {
   res.status(200).json(data);
 });
 
-// get data user
-app.get("/user", async (req, res) => {
-  const { data } = await supabase.from("user").select("*");
-  res.status(200).json(data);
-});
-
 // get data jadwal_booking
 app.get("/jadwal", async (req, res) => {
   const { data } = await supabase.from("jadwal_booking").select("*");
