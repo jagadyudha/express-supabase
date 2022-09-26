@@ -74,12 +74,17 @@ app.get("/layanan", async (req, res) => {
   res.status(200).json(data);
 });
 
-app.get("/transaksi", async (req, res) => {
-  const { data, error } = await supabase.from("transaksi").select(`
-    id_transaksi, tgl_masuk, tgl_keluar, kendaraan, status, total_harga,
+app.get("/transaksi/:slug", async (req, res) => {
+  const { data, error } = await supabase
+    .from("transaksi")
+    .select(
+      `
+    id_transaksi, id_user, tgl_masuk, tgl_keluar, kendaraan, status, total_harga,
     layanan:id_layanan (id_layanan, nama_layanan, deskripsi_layanan, harga, detail_layanan),
     kategori:id_kategori (id_kategori, nama_kategori, icon, color, bg_color)
-  `);
+  `
+    )
+    .eq("id_transaksi", req.params.slug);
   res.status(200).json(data);
 });
 
@@ -143,6 +148,7 @@ app.post("/refreshtoken", async (req, res) => {
 
 app.post("/transaksi", async (req, res) => {
   const { error } = await supabase.from("transaksi").insert({
+    id_user: req.body.id_user,
     id_layanan: req.body.id_layanan,
     id_kategori: req.body.id_kategori,
     tgl_masuk: req.body.tgl_masuk,
