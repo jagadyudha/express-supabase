@@ -84,7 +84,7 @@ app.get("/transaksi/:slug", async (req, res) => {
     kategori:id_kategori (id_kategori, nama_kategori, icon, color, bg_color)
   `
     )
-    .eq("id_transaksi", req.params.slug);
+    .eq("id_user", req.params.slug);
   res.status(200).json(data);
 });
 
